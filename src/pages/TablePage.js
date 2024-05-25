@@ -1,3 +1,4 @@
+import { render } from "@testing-library/react";
 import Table from "../components/Table";
 
 function TablePage() {
@@ -11,12 +12,15 @@ function TablePage() {
   const config = [
     {
       label: "Name",
+      render: (fruit) => fruit.name,
     },
     {
       label: "Color",
+      render: (fruit) => fruit.color,
     },
     {
       label: "Score",
+      render: (fruit) => fruit.score,
     },
   ];
 
