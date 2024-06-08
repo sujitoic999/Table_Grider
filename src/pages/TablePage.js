@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import Table from "../components/Table";
 
 function TablePage() {
@@ -20,7 +19,7 @@ function TablePage() {
     },
     {
       label: "Score",
-      render: (fruit) => fruit.score,
+      render: (fruit) => fruit.score, //this is nothing but a function, render is defined inside the object
     },
   ];
 

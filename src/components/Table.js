@@ -5,6 +5,7 @@ const Table = ({ data, config, keyFn }) => {
     return <th key={column.label}>{column.label}</th>;
   });
 
+
   const renderedRows = data.map((rowData) => {
     const renderedCells = config.map((column) => {
       return (
