@@ -20,6 +20,11 @@ function TablePage() {
     {
       label: "Score",
       render: (fruit) => fruit.score, //this is nothing but a function, render is defined inside the object
+      header: () => (
+        <th className="bg-red-500">
+          Score
+        </th>
+      ),
     },
   ];
 
