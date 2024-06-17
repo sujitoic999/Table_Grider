@@ -32,6 +32,7 @@ const SortableTable = (props) => {
 
     if (sortOrder && sortBy) {
       const { sortValue } = config.find((column) => column.label === sortBy);
+      console.log("------", sortValue);
       sortedData = [...data].sort((a, b) => {
         const valueA = sortValue(a);
         const valueB = sortValue(b);
@@ -49,7 +50,8 @@ const SortableTable = (props) => {
       ...column,
       header: () => (
         <th onClick={() => handleClick(column.label)}>
-          {column.label} IS SORTABLE
+          {getIcons(column.label, sortBy, sortOrder)}
+          {column.label}
         </th>
       ),
     };
@@ -62,5 +64,18 @@ const SortableTable = (props) => {
     </div>
   );
 };
+
+function getIcons(label, sortBy, sortOrder) {
+  if (label !== sortBy) {
+    return "Show both icons";
+  }
+  if (sortOrder === null) {
+    return "show both icons";
+  } else if (sortOrder === "asc") {
+    return "show up icon";
+  } else if (sortOrder === "desc") {
+    return "show down icon";
+  }
+}
 
 export default SortableTable;
