@@ -27,7 +27,39 @@ const SortableTable = (props) => {
     }
   };
 
+  function getIcons(label, sortBy, sortOrder) {
+    if (label !== sortBy) {
+      return (
+        <div>
+          <GoArrowSmallUp />
+          <GoArrowSmallDown />
+        </div>
+      );
+    }
+    if (sortOrder === null) {
+      return (
+        <div>
+          <GoArrowSmallUp />
+          <GoArrowSmallDown />
+        </div>
+      );
+    } else if (sortOrder === "asc") {
+      return (
+        <div>
+          <GoArrowSmallUp />
+        </div>
+      );
+    } else if (sortOrder === "desc") {
+      return (
+        <div>
+          <GoArrowSmallDown />
+        </div>
+      );
+    }
+  }
+
   let sortedData = data;
+
   const updatedConfig = config.map((column) => {
     if (!column.sortValue) {
       return column;
@@ -39,8 +71,8 @@ const SortableTable = (props) => {
 
     if (sortOrder && sortBy) {
       const { sortValue } = config.find((column) => column.label === sortBy);
-      console.log("------", sortValue);
       sortedData = [...data].sort((a, b) => {
+        //here we've written [...data].sort() because we don't want to modify original array
         const valueA = sortValue(a);
         const valueB = sortValue(b);
 
@@ -75,36 +107,5 @@ const SortableTable = (props) => {
     </div>
   );
 };
-
-function getIcons(label, sortBy, sortOrder) {
-  if (label !== sortBy) {
-    return (
-      <div>
-        <GoArrowSmallUp />
-        <GoArrowSmallDown />
-      </div>
-    );
-  }
-  if (sortOrder === null) {
-    return (
-      <div>
-        <GoArrowSmallUp />
-        <GoArrowSmallDown />
-      </div>
-    );
-  } else if (sortOrder === "asc") {
-    return (
-      <div>
-        <GoArrowSmallUp />
-      </div>
-    );
-  } else if (sortOrder === "desc") {
-    return (
-      <div>
-        <GoArrowSmallDown />
-      </div>
-    );
-  }
-}
 
 export default SortableTable;
